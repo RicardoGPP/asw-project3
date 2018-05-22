@@ -10,10 +10,7 @@ public class SoncView implements EntryPoint {
 	private final SoncServiceAsync service = GWT.create(SoncService.class);
 	
 	public void onModuleLoad() {
-		RootPanel rootPanel = RootPanel.get();
-		
-		Label label = new Label("Menu nome é Ricardo.");
-		rootPanel.add(label);
+	
 	}
 	
 }
