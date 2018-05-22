@@ -7,11 +7,11 @@ public class SignInPanel extends UserPanel {
 	private final Button buttonSignIn;
 	private final Button buttonSignUp;
 		
-	public Button getButtonLogin() {
+	public Button getButtonSignIn() {
 		return buttonSignIn;
 	}
 
-	public Button getButtonRegister() {
+	public Button getButtonSignUp() {
 		return buttonSignUp;
 	}
 

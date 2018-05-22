@@ -13,6 +13,22 @@ public class UpdatePasswordPanel extends AuthenticationPanel {
 	private final Button buttonCancel;
 	private final Button buttonOK;
 	
+	public PasswordTextBox getPasswordTextBoxOldPassword() {
+		return passwordTextBoxOldPassword;
+	}
+
+	public PasswordTextBox getPasswordTextBoxNewPassword() {
+		return passwordTextBoxNewPassword;
+	}
+
+	public Button getButtonCancel() {
+		return buttonCancel;
+	}
+
+	public Button getButtonOK() {
+		return buttonOK;
+	}
+
 	public UpdatePasswordPanel() {
 		this.labelOldPassword = new Label();
 		this.labelOldPassword.setText("Old password:");
