@@ -10,8 +10,10 @@ public interface SoncServiceAsync {
 
 	void battle(List<String> nicks, AsyncCallback<Movie> callback);
 
-	void buildShip(String nick, String password, String code, AsyncCallback<Void> callback);
-
+	void updateCode(String nick, String password, String code, AsyncCallback<Boolean> callback);
+	
+	void testCode(String nick, String password, String code, AsyncCallback<Boolean> callback);
+	
 	void getCurrentCode(String nick, String password, AsyncCallback<String> callback);
 
 	void getPlayersNamesWithShips(AsyncCallback<List<String>> callback);

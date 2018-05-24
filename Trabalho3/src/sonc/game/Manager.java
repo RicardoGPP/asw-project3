@@ -117,6 +117,69 @@ public class Manager implements Serializable {
 	}
 
 	/**
+	 * Update the user's code.
+	 * 
+	 * @param nick
+	 *            - of the player
+	 * @param password
+	 *            - of the player
+	 * @param code
+	 *            - the compile and instance
+	 * @throws SoncException
+	 *             - if nick is unknown, password is invalid, code has errors or an
+	 *             I/O error occurred
+	 * @return True if password was updated and false if it wasn't. 
+	 */
+	public boolean updateCode(String nick, String password, String code) throws SoncException {
+		Player player = this.allPlayers.getPlayer(nick);
+		if ((player == null) || (!player.authenticate(password)))
+			throw new SoncException("Nick is unknown or password is invalid.");
+		else {
+			String oldCode = player.getCode();
+			try {
+				player.setCode(code);
+				backup(this);
+				return true;
+			} catch (IOException e) {
+				player.setCode(oldCode);
+				return false;
+			}
+		}
+	}
+	
+	/**
+	 * Set ship's code and try to instance it, but without persisting the player.
+	 * 
+	 * @param nick
+	 *            - of the player
+	 * @param password
+	 *            - of the player
+	 * @param code
+	 *            - the compile and instance
+	 * @throws SoncException
+	 *             - if nick is unknown, password is invalid, code has errors or an
+	 *             I/O error occurred
+	 * @return True if the code is valid and false if it's not.
+	 */
+	public boolean testCode(String nick, String password, String code) throws SoncException {
+		Player player = this.allPlayers.getPlayer(nick);
+		if ((player == null) || (!player.authenticate(password)))
+			throw new SoncException("Nick is unknown or password is invalid.");
+		else {
+			String oldCode = player.getCode();
+			player.setCode(code);
+			try {
+				player.checkCode();
+				return true;
+			} catch (SoncException e) {
+				return false;
+			} finally {
+				player.setCode(oldCode);
+			}
+		}
+	}
+	
+	/**
 	 * Authenticate user given id and password
 	 * 
 	 * @param nick

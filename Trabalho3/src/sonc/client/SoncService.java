@@ -14,11 +14,13 @@ public interface SoncService extends RemoteService {
 	
 	public boolean updatePassword(String nick, String oldPassword, String newPassword) throws SoncException;
 	
+	public boolean updateCode(String nick, String password, String code) throws SoncException;
+	
+	public boolean testCode(String nick, String password, String code) throws SoncException;
+	
 	public boolean authenticate(String nick, String password) throws SoncException;
 	
 	public String getCurrentCode(String nick, String password) throws SoncException;
-	
-	public void buildShip(String nick, String password, String code) throws SoncException;
 	
 	public List<String> getPlayersNamesWithShips() throws SoncException;
 	
