@@ -54,7 +54,7 @@ public class SoncView implements EntryPoint {
 		deckLayoutPanel.add(battlePanel);
 		deckLayoutPanel.add(battleConfigurationPanel);
 		
-		deckLayoutPanel.showWidget(codeEditorPanel);
+		deckLayoutPanel.showWidget(battlePanel);
 		
 		//SignInPanel events
 		signInPanel.setClickHandlerButtonSignIn(new ClickHandler() {
@@ -251,8 +251,6 @@ public class SoncView implements EntryPoint {
 		
 		//BattlePanel events
 		battlePanel.setClickHandlerButtonStart(new ClickHandler() {
-			
-			@Override
 			public void onClick(ClickEvent event) {
 				List<String> nicks = battleConfigurationPanel.getSelectedNicks();				
 				if (nicks.size() == 0)

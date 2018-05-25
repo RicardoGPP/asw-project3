@@ -14,7 +14,7 @@ public class SoncServiceImpl extends RemoteServiceServlet implements SoncService
 	private static final long serialVersionUID = 1L;
 	
 	static {
-		AgentBuilder.addToClassPath("src");
+		AgentBuilder.addToClassPath("../src");
 		Manager.setPlayersFile(new File("USERS.ser"));
 	}
 	
@@ -47,9 +47,9 @@ public class SoncServiceImpl extends RemoteServiceServlet implements SoncService
 	}
 
 	public Movie battle(List<String> nicks) throws SoncException {
-		return Manager.getInstance().battle(nicks);
+		//return Manager.getInstance().battle(nicks);
 		
-		/*
+		
 		Movie movie = new Movie();
 		
 		for (int i = 0; i < 400; i++) {
@@ -60,6 +60,6 @@ public class SoncServiceImpl extends RemoteServiceServlet implements SoncService
 			movie.addScore("Matheus", 0, i);
 		}
 		
-		return movie;*/
+		return movie;
 	}
 }
