@@ -1,5 +1,8 @@
 package sonc.client.panel;
 
+import java.util.ArrayList;
+import java.util.List;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
@@ -17,23 +20,47 @@ public class BattleConfigurationPanel extends VerticalPanel {
 	private final Button buttonPlus;
 	private final Button buttonMinus;
 	private final ListBox listBoxSelectedNicks;
+	private final HorizontalPanel horizontalPanelButtons;
+	private final Button buttonOK;
 	
-	public ListBox getListBoxNicksToSelect() {
-		return listBoxNicksToSelect;
+	public void setNicksToSelect(List<String> nicks) {
+		this.listBoxNicksToSelect.clear();
+		for (String nick : nicks)
+			this.listBoxNicksToSelect.addItem(nick);
 	}
-
-	public Button getButtonPlus() {
-		return buttonPlus;
+	
+	public List<String> getSelectedNicks() {
+		List<String> nicks = new ArrayList<>();
+		for (int i = 0; i < this.listBoxSelectedNicks.getItemCount(); i++)
+			nicks.add(this.listBoxSelectedNicks.getItemText(i));
+		return nicks;
 	}
-
-	public Button getButtonMinus() {
-		return buttonMinus;
+	
+	public void addNickOnListOfSelectedNicks() {
+		String nick = this.listBoxNicksToSelect.getSelectedItemText();
+		if ((nick != null) && (!nick.equals("")))
+			this.listBoxSelectedNicks.addItem(nick);
+		this.listBoxNicksToSelect.setSelectedIndex(-1);
 	}
-
-	public ListBox getListBoxSelectedNicks() {
-		return listBoxSelectedNicks;
+	
+	public void removeNickOnListOfSelectedNicks() {
+		int selected = this.listBoxSelectedNicks.getSelectedIndex();
+		if (selected > -1)
+			this.listBoxSelectedNicks.removeItem(selected);
 	}
-
+	
+	public void setClickHandlerButtonPlus(ClickHandler handler) {
+		this.buttonPlus.addClickHandler(handler);
+	}
+	
+	public void setClickHandlerButtonMinus(ClickHandler handler) {
+		this.buttonMinus.addClickHandler(handler);
+	}
+	
+	public void setClickHandlerButtonOK(ClickHandler handler) {
+		this.buttonOK.addClickHandler(handler);
+	}
+	
 	public BattleConfigurationPanel() {
 		this.setWidth(GENERAL_PANEL_WIDTH);
 		this.setStyleName("panel");
@@ -60,6 +87,13 @@ public class BattleConfigurationPanel extends VerticalPanel {
 		this.listBoxSelectedNicks.setWidth(SELECTED_NICKS_LIST_WIDTH);
 		this.listBoxSelectedNicks.setMultipleSelect(false);
 		this.listBoxSelectedNicks.setVisibleItemCount(15);
-		this.add(this.listBoxSelectedNicks);		
+		this.add(this.listBoxSelectedNicks);
+		
+		this.horizontalPanelButtons = new HorizontalPanel();
+		this.add(this.horizontalPanelButtons);
+		
+		this.buttonOK = new Button();
+		this.buttonOK.setText("OK");
+		this.horizontalPanelButtons.add(this.buttonOK);
 	}
 }

@@ -48,6 +48,18 @@ public class SoncServiceImpl extends RemoteServiceServlet implements SoncService
 
 	public Movie battle(List<String> nicks) throws SoncException {
 		return Manager.getInstance().battle(nicks);
+		
+		/*
+		Movie movie = new Movie();
+		
+		for (int i = 0; i < 400; i++) {
+			movie.newFrame();
+			movie.addOblong(i, i, (float) Math.toRadians(i), 30, "black");
+			movie.addOblong(400 - i, 400 - i, (float) Math.toRadians(i), 30, "black");
+			movie.addScore("Ricardo", i, 1000);
+			movie.addScore("Matheus", 0, i);
+		}
+		
+		return movie;*/
 	}
-
 }

@@ -18,4 +18,5 @@ public class Data {
 	public static final String NO_CODE_WRITTEN_MESSAGE = "There is no code to test.";
 	public static final String SUCCESS_TEST_CODE_MESSAGE = "Your code is valid.";
 	public static final String FAILURE_TEST_CODE_MESSAGE = "Your code is invalid.";
+	public static final String NO_SHIPS_SELECTED_MESSAGE = "No ships configured to battle.";
 }

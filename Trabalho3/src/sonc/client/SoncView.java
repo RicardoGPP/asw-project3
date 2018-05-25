@@ -1,5 +1,8 @@
 package sonc.client;
 
+import java.util.List;
+import com.google.gwt.animation.client.AnimationScheduler;
+import com.google.gwt.animation.client.AnimationScheduler.AnimationCallback;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Position;
@@ -10,22 +13,22 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DeckLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-
 import sonc.client.panel.BattleConfigurationPanel;
 import sonc.client.panel.BattlePanel;
 import sonc.client.panel.CodeEditorPanel;
 import sonc.client.panel.SignInPanel;
 import sonc.client.panel.SignUpPanel;
 import sonc.client.panel.UpdatePasswordPanel;
+import sonc.shared.Movie;
+import sonc.shared.Movie.Frame;
 import sonc.utils.Data;
 
 public class SoncView implements EntryPoint {
 
 	private final SoncServiceAsync service = GWT.create(SoncService.class);
-	
-	//Set your username and password here to use panels that asks for authentication 
-	private String username = "";
-	private String password = "";
+	 
+	private String username = "Ricardo";
+	private String password = "123";
 	
 	public void onModuleLoad() {
 		RootPanel rootPanel = RootPanel.get();
@@ -51,7 +54,6 @@ public class SoncView implements EntryPoint {
 		deckLayoutPanel.add(battlePanel);
 		deckLayoutPanel.add(battleConfigurationPanel);
 		
-		//Change this to set which panel should be visible
 		deckLayoutPanel.showWidget(codeEditorPanel);
 		
 		//SignInPanel events
@@ -225,6 +227,72 @@ public class SoncView implements EntryPoint {
 						}
 					});
 				}
+			}
+		});
+	
+		//BattleConfigurationPanel events
+		battleConfigurationPanel.setClickHandlerButtonPlus(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				battleConfigurationPanel.addNickOnListOfSelectedNicks();
+			}
+		});
+		
+		battleConfigurationPanel.setClickHandlerButtonMinus(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				battleConfigurationPanel.removeNickOnListOfSelectedNicks();
+			}
+		});
+		
+		battleConfigurationPanel.setClickHandlerButtonOK(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				deckLayoutPanel.showWidget(battlePanel);
+			}
+		});
+		
+		//BattlePanel events
+		battlePanel.setClickHandlerButtonStart(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				List<String> nicks = battleConfigurationPanel.getSelectedNicks();				
+				if (nicks.size() == 0)
+					Window.alert(Data.NO_SHIPS_SELECTED_MESSAGE);
+				else {
+					service.battle(nicks, new AsyncCallback<Movie>() {						
+						public void onSuccess(Movie result) {							
+							final List<Frame> frames = result.getFrames();							
+							final AnimationScheduler animation = AnimationScheduler.get();														
+							animation.requestAnimationFrame(new AnimationCallback() {
+								public void execute(double timestamp) {
+									if (frames.size() != 0) {
+										final Frame frame = frames.remove(0);
+										battlePanel.draw(frame);
+										animation.requestAnimationFrame(this);
+									}
+								}
+							});	
+						}
+						
+						public void onFailure(Throwable caught) {
+							Window.alert(Data.DEFAULT_ERROR_MESSAGE + " Error: " + caught.getMessage());
+						}
+					});
+				}				
+			}
+		});
+		
+		battlePanel.setClickHandlerButtonConfigure(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				service.getPlayersNamesWithShips(new AsyncCallback<List<String>>() {					
+					public void onSuccess(List<String> result) {
+						battleConfigurationPanel.setNicksToSelect(result);
+						deckLayoutPanel.showWidget(battleConfigurationPanel);
+					}
+					
+					public void onFailure(Throwable caught) {
+						Window.alert(Data.DEFAULT_ERROR_MESSAGE + " Error: " + caught.getMessage());
+					}
+				});
 			}
 		});
 	}
