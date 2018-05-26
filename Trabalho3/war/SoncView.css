@@ -1,0 +1,68 @@
+body {
+	position: absolute !important;
+	padding: 0px !important;
+	margin: 0px !important;
+	width: 100% !important;
+	height: 100% !important;
+	background-image: url('ships-battle-1.jpg') !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	transition: background-image 2s;
+	color: #FFFFFF !important;
+}
+
+.panel {
+	position: absolute !important;
+	border: 1px solid #828282 !important;
+	background-color: #1C1C1C !important;
+	padding: 15px !important;
+	left: 50% !important;
+	top: 50% !important;
+	transform: translate(-50%, -50%) !important;
+}
+
+.deck {
+	position: absolute !important;
+	left: 0px !important;
+	top: 0px !important;
+	min-width: 100% !important;
+	min-height: 100% !important;
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+canvas {
+	border: 1px solid #4F4F4F !important;
+	background-color: #000000 !important;
+}
+
+.menupanel button {
+	margin-right: 0px !important;
+	margin-top: 0px !important;
+	margin-bottom: 2px !important;
+}
+
+select {
+	border: 1px solid black;
+}
+
+input {
+	border: 1px solid #4F4F4F !important;
+	background-color: #363636 !important;
+	color: #87CEFA !important;
+}
+
+button {
+	border: 1px solid #FFFFFF !important;
+	border-radius: 0px !important;
+	background-color: #1C1C1C !important;
+	margin-right: 2px !important;
+	margin-top: 2px !important;
+	min-width: 80px !important;
+}
+
+textarea {
+	border: 1px solid #4F4F4F !important;
+	background-color: #363636 !important;
+	color: #87CEFA !important; 
+}
