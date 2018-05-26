@@ -1,6 +1,7 @@
 package sonc.utils;
 
 public class Data {
+<<<<<<< HEAD
 	//Service implementation
 	public static final int WORLD_WIDTH = 660;
 	public static final int WORLD_HEIGHT = 478;
@@ -12,6 +13,8 @@ public class Data {
 	public static final int QUAD_TRIE_CAPACITY = 5;
 	
 	//Messages
+=======
+>>>>>>> branch 'master' of https://github.com/RicardoGPP/asw-project3.git
 	public static final String NOT_ALL_FIELDS_FILLED_MESSAGE = "There are fields without fill.";
 	public static final String DEFAULT_ERROR_MESSAGE = "It occurred an error on system.";
 	public static final String SUCCESS_REGISTRATION_MESSAGE = "Registration success!";

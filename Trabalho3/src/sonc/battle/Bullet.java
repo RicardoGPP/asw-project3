@@ -15,6 +15,7 @@ public class Bullet extends Munition implements HasPoint {
 	private double maxSpeed;
 	private double maxSpeedChange;
 	private double maxRotation;
+<<<<<<< HEAD
 
 	public static void setDamage(int damage) {
 		Bullet.damage = damage;
@@ -62,6 +63,57 @@ public class Bullet extends Munition implements HasPoint {
 
 	public String getColor() {
 		return "#000000";
+=======
+	private int size;
+	private String color;
+
+	static void setDamage(int damage) {
+		Bullet.damage = damage;
+	}
+
+	static int getDamage() {
+		return Bullet.damage;
+	}
+
+	static void setInitialSpeed(double speed) {
+		Bullet.initialSpeed = speed;
+	}
+
+	static double getInitialSpeed() {
+		return Bullet.initialSpeed;
+	}
+
+	static int getFireDelay() {
+		return Bullet.fireDelay;
+	}
+
+	static void setFireDelay(int fireDelay) {
+		Bullet.fireDelay = fireDelay;
+	}
+
+	double getMaxSpeed() {
+		return this.maxSpeed;
+	}
+
+	double getMaxSpeedChange() {
+		return this.maxSpeedChange;
+	}
+
+	double getMaxRotation() {
+		return this.maxRotation;
+	}
+
+	int getImpactDamage() {
+		return Bullet.damage;
+	}
+
+	public int getSize() {
+		return this.size;
+	}
+
+	public String getColor() {
+		return this.color;
+>>>>>>> branch 'master' of https://github.com/RicardoGPP/asw-project3.git
 	}
 
 	public Bullet(double heading) {

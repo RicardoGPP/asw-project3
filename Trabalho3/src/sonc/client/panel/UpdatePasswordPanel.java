@@ -37,6 +37,7 @@ public class UpdatePasswordPanel extends AuthenticationPanel {
 	public void setClickHandlerButtonOK(ClickHandler handler) {
 		this.buttonOK.addClickHandler(handler);
 	}
+<<<<<<< HEAD
 	
 	public void setFocusOnOldPassword() {
 		this.passwordTextBoxOldPassword.setFocus(true);
@@ -79,6 +80,42 @@ public class UpdatePasswordPanel extends AuthenticationPanel {
 	}
 	
 	public void reset() {
+=======
+
+	public UpdatePasswordPanel() {
+		this.labelOldPassword = new Label();
+		this.labelOldPassword.setText("Old password:");
+		this.labelOldPassword.setWidth("100%");
+		this.verticalPanelFields.add(this.labelOldPassword);
+		
+		this.passwordTextBoxOldPassword = new PasswordTextBox();
+		this.passwordTextBoxOldPassword.setWidth("100%");
+		this.verticalPanelFields.add(this.passwordTextBoxOldPassword);
+		
+		this.labelNewPassword = new Label();
+		this.labelNewPassword.setText("New password:");
+		this.labelNewPassword.setWidth("100%");
+		this.verticalPanelFields.add(this.labelNewPassword);
+		
+		this.passwordTextBoxNewPassword = new PasswordTextBox();
+		this.passwordTextBoxNewPassword.setWidth("100%");
+		this.verticalPanelFields.add(this.passwordTextBoxNewPassword);
+		
+		this.buttonOK = new Button();
+		this.buttonOK.setText("OK");
+		this.horizontalPanelButtons.add(this.buttonOK);
+		
+		this.buttonCancel = new Button();
+		this.buttonCancel.setText("Cancel");
+		this.horizontalPanelButtons.add(this.buttonCancel);		
+	}
+	
+	public boolean isAllFilled() {
+		return ((!this.getOldPassword().equals("")) && (!this.getNewPassword().equals("")));
+	}
+	
+	public void clearAllFields() {
+>>>>>>> branch 'master' of https://github.com/RicardoGPP/asw-project3.git
 		this.setOldPassword("");
 		this.setNewPassword("");
 	}

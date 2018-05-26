@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/RicardoGPP/asw-project3.git
 import javax.naming.NameNotFoundException;
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;

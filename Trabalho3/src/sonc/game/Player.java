@@ -62,7 +62,11 @@ public class Player implements Serializable {
 			agentBuilder.getInstance(Ship.class, this.code, this.nick);
 		} catch (IOException | InstantiationException | IllegalAccessException | NameNotFoundException
 				| NullPointerException e) {
+<<<<<<< HEAD
 			throw new SoncException("An error occurred on checking player's code.", e);
+=======
+			throw new SoncException("An error occurred on checking player's code. Error", e);
+>>>>>>> branch 'master' of https://github.com/RicardoGPP/asw-project3.git
 		}
 	}
 
